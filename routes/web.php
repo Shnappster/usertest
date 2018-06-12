@@ -12,3 +12,4 @@ Route::post('/users', 'ManageUserController@userAdd');
 Route::get('/users/{user}', 'ManageUserController@edit');
 Route::patch('/users/{user}/update', 'ManageUserController@update');
 Route::delete('/users/{user}/delete', 'ManageUserController@userDelete');
+Route::get('/users/{user}/block', 'ManageUserController@block');

@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('login');
             $table->string('password');
+            $table->boolean('isBlocked')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
