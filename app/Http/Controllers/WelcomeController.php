@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class WelcomeController extends Controller
 {
@@ -14,15 +16,10 @@ class WelcomeController extends Controller
     public function index(Request $request)
     {
         if ($request->user()->hasRole('admin')) {
-            return redirect('/panel');
+            return view('admin.panel');
+        } else {
+            $request->user()->hasRole('customer');
+            return view('main.master');
         }
-        $request->user()->authorizeRoles('customer');
-        return view('main.master');
-    }
-
-    public function someAdminStuff(Request $request)
-    {
-        $request->user()->authorizeRoles('admin');
-        return view('admin.panel');
     }
 }

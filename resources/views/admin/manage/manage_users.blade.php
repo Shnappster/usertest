@@ -23,9 +23,17 @@
                     <form id="action_btn" action="/users/{{$user->id}}">
                         <button type="submit" class="btn btn-primary">Edit</button>
                     </form>
-                    <form id="action_btn">
-                        <button type="submit" class="btn btn-warning">Ban</button>
-                    </form>
+
+                    @if ($user->isBlocked == "0")
+                        <form id="action_btn" action="/users/{{$user->id}}/block">
+                            <button type="submit" class="btn btn-warning">Ban</button>
+                        </form>
+                    @else
+                        <form id="action_btn" action="/users/{{$user->id}}/block">
+                            <button type="submit" class="btn btn-success">UnBan</button>
+                        </form>
+                    @endif
+
                     <form id="action_btn" method="post" action="/users/{{$user->id}}/delete">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}

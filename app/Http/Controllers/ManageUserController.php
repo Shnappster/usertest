@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Role;
 use App\User;
 use App\Http\Requests\CreateUserFormRequest;
+use Illuminate\Support\Facades\Request;
 
 class ManageUserController extends Controller
 {
@@ -67,4 +68,15 @@ class ManageUserController extends Controller
         return redirect('panel/manage-user');
     }
 
+    public function userBlock(User $user)
+    {
+        if ($user->isBlocked == '0') {
+            $user->isBlocked = '1';
+            $user->save();
+        } else {
+            $user->isBlocked = '0';
+            $user->save();
+        }
+        return redirect('panel/manage-user');
+    }
 }
